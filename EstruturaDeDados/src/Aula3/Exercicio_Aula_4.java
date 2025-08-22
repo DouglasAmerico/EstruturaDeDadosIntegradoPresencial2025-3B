@@ -6,25 +6,18 @@ import java.util.Scanner;
 
 public class Exercicio_Aula_4 {
     public static Scanner leitor = new Scanner(System.in);
+    final private static Boolean ComID = true;
+    final private static Boolean SemID = false;
 
     public static void imprimir(ArrayList<String> pecas,Boolean comID){
-        if (comID){
             System.out.println();
             System.out.println("----------Peças em estoque---------");
             for (int i = 0; i < pecas.size(); i++) {
-                System.out.println("ID: "+i+" Peça: "+pecas.get(i));
+                if(comID) System.out.println("ID: "+i+" Peça: "+pecas.get(i));
+                else System.out.println("Peça: "+pecas.get(i));
             }
             System.out.println("-----------------------------------");
             System.out.println();
-        }else {
-            System.out.println();
-            System.out.println("----------Peças em estoque---------");
-            for (String peca : pecas) {
-                System.out.println(peca);
-            }
-            System.out.println("-----------------------------------");
-            System.out.println();
-        }
     }
 
     public static String contemOValor(ArrayList<String> pecas,String peca){
@@ -43,24 +36,24 @@ public class Exercicio_Aula_4 {
 
         System.out.print("Informe a peça a ser adicionada: ");
         pecasEmEstoque.add(leitor.nextLine());
-        imprimir(pecasEmEstoque,false);//estou mandando o arraylist com mais peças para ser impresso
+        imprimir(pecasEmEstoque,SemID);//estou mandando o arraylist com mais peças para ser impresso
 
         System.out.println("Removendo a peça Filtro de Ar");
         pecasEmEstoque.remove("Filtro de Ar");
-        imprimir(pecasEmEstoque,false);
+        imprimir(pecasEmEstoque,SemID);
 
         System.out.print("Informe a peça para verificar disponibilidade: ");
         System.out.println(contemOValor(pecasEmEstoque,leitor.nextLine()));
 
-        imprimir(pecasEmEstoque,false);
+        imprimir(pecasEmEstoque,SemID);
         System.out.println("O numero total de peças em estoque é: "+pecasEmEstoque.size());
 
-        imprimir(pecasEmEstoque,true);
+        imprimir(pecasEmEstoque,ComID);
         System.out.print("Informe o ID da peça que você quer alerar: ");
         Integer pecaAlteracao = leitor.nextInt();
         System.out.print("Qual o nome que vai substituir a peça "+pecasEmEstoque.get(pecaAlteracao)+"?");
         leitor.nextLine();
         pecasEmEstoque.set(pecaAlteracao,leitor.nextLine());
-        imprimir(pecasEmEstoque,false);
+        imprimir(pecasEmEstoque,SemID);
     }
 }
